@@ -71,6 +71,8 @@ typedef NS_ENUM(NSInteger, HTTPRequestMethod) {
 @interface AbstractAPIController : NSObject
 @property (nonatomic, readonly) NOAPIMapper *mapper;
 @property (nonatomic, readonly) AFHTTPRequestOperationManager *requestManager;
+@property (nonatomic, readonly) dispatch_queue_t sendingQueue;
+@property (nonatomic, readonly) dispatch_queue_t parsingQueue;
 
 - (instancetype)initWithBaseURL:(NSString *)baseAPIURL fieldsMap:(NSDictionary *)fieldsMap
     transformer:(id)transformer;
