@@ -76,7 +76,10 @@
 
         id object = [[objectType alloc] init];
         NSDictionary *fields = objectTransformer;
-        
+		
+		NSMutableDictionary <NSString *, NSMutableDictionary <NSString *, id> *> *aggregatedValues =
+			[[NSMutableDictionary alloc] init];
+		
         for (NSString *fieldKey in fields.allKeys) {
             NSDictionary *fieldDescription = fields[fieldKey];
 
@@ -90,6 +93,7 @@
             NSString *typeTransformer = fieldDescription[@"transformer"];
             NSString *classOfObject = fieldDescription[@"kindOf"];
             NSString *typeOfField = fieldDescription[@"type"];
+			NSString *aggregatedKey = fieldDescription[@"aggregatedKey"];
 
             // Parse array of sub-objects.
             if (arrayItemClassName) {
@@ -153,23 +157,39 @@
             
             // Parse object according to its class.
             else if (classOfObject) {
+				id rawValue = [rawObject valueForKeyPath:fieldKey];
+			
                 if (typeOfField) {
-                    id innerObject = [rawObject valueForKeyPath:fieldKey];
-                    if (![innerObject isKindOfClass:NSClassFromString(typeOfField)]) {
-                        if (innerObject && ![innerObject isKindOfClass:[NSNull class]]) {
+                    if (![rawValue isKindOfClass:NSClassFromString(typeOfField)]) {
+                        if (rawValue && ![rawValue isKindOfClass:[NSNull class]]) {
                             NSLog(@"Warning: API response for <%@> contains unexpected value: <%@>%@"
                                 "for key \"%@\"while an instance of <%@> is expected.", objectType,
-                                [innerObject class], innerObject, fieldKey, typeOfField);
+                                [rawValue class], rawValue, fieldKey, typeOfField);
                         }
                         continue;
                     }
                 }
-                
-                id innerObject = [self objectOfType:NSClassFromString(classOfObject)
-                    fromDictionary:[rawObject valueForKeyPath:fieldKey]];
-                if (object) {
-                    [object setValue:innerObject forKeyPath:objectKey];
-                }
+				
+				if (aggregatedKey) {
+					NSMutableDictionary *values = aggregatedValues[objectKey];
+					if (!values) {
+						values = [[NSMutableDictionary alloc] init];
+						aggregatedValues[objectKey] = values;
+					}
+					
+					values[aggregatedKey] = rawValue;
+					
+					id innerObject = [self objectOfType:NSClassFromString(classOfObject)
+						fromDictionary:values];
+					
+					[object setValue:innerObject forKeyPath:objectKey];
+					
+				} else {
+					id innerObject = [self objectOfType:NSClassFromString(classOfObject)
+						fromDictionary:rawValue];
+					
+					[object setValue:innerObject forKeyPath:objectKey];
+				}
             }
             
             // Check type of the value, don't copy invalid values.
