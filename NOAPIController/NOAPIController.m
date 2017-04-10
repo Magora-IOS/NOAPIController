@@ -291,8 +291,8 @@
 #pragma mark - Private methods
 
 - (id<NOAPITask>)getObjectOfType:(Class)objectType fromURL:(NSString *)objectURL
-    postBody:(NSData *)bodyData boundary:(NSString *)boundary success:(void (^)(id, id))success
-    failure:(void (^)(NSError *error, id response))failure
+    postBody:(NSData *)bodyData name:(NSString *)name fileName:(NSString *)fileName
+	mime:(NSString *)mime success:(void (^)(id, id))success failure:(void (^)(NSError *error, id response))failure
 {
     NOAPITask *apiTask = [[NOAPITask alloc] init];
     apiTask.successBlock = success;
@@ -302,24 +302,18 @@
         if (apiTask.cancelled) {
             return;
         }
-        NSString *urlString = [[NSURL URLWithString:objectURL relativeToURL:self.requestManager.baseURL]
-            absoluteString];
-
-        NSMutableURLRequest *request = [self.requestManager.requestSerializer
-            requestWithMethod:@"POST" URLString:urlString parameters:nil error:nil];
-
-        request.HTTPBody = bodyData;
-
-        [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-        [request setValue:[NSString stringWithFormat:@"multipart/form-data; boundary=%@", boundary]
-            forHTTPHeaderField:@"Content-Type"];
-
-        AFHTTPRequestOperation *operation = [self.requestManager HTTPRequestOperationWithRequest:request
+		
+        [self.requestManager POST:objectURL parameters:nil
+			constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+                [formData appendPartWithFileData:bodyData name:name
+					fileName:fileName mimeType:mime];
+            }
             success:^(AFHTTPRequestOperation *operation, id rawObject) {
                 dispatch_async(self.parsingQueue, ^{
                     if (apiTask.cancelled) {
                         return;
                     }
+					
                     id object = [self.mapper objectOfType:objectType fromDictionary:rawObject];
                     dispatch_async(dispatch_get_main_queue(), ^{
                         if (!apiTask.cancelled && apiTask.successBlock) {
@@ -333,8 +327,8 @@
                     apiTask.failureBlock(error, operation.responseObject);
                 }
             }];
-        [self.requestManager.operationQueue addOperation:operation];
     });
+	
     return apiTask;
 }
 

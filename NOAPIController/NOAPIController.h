@@ -33,7 +33,9 @@ typedef NS_ENUM(NSInteger, HTTPRequestMethod) {
     HTTPRequestMethodPOST,
     HTTPRequestMethodPUT,
 	HTTPRequestMethodPATCH,
-    HTTPRequestMethodDELETE
+    HTTPRequestMethodDELETE,
+	
+	HTTPRequestMethodMULTIPART,
 };
 
 @class NOAPIMapper;
@@ -114,7 +116,7 @@ typedef NS_ENUM(NSInteger, HTTPRequestMethod) {
     failure:(void(^)(NSError *error, id response))failure;
 
 - (id<NOAPITask>)getObjectOfType:(Class)objectType fromURL:(NSString *)objectURL
-    postBody:(NSData *)bodyData boundary:(NSString *)boundary success:(void (^)(id, id))success
-    failure:(void (^)(NSError *error, id response))failure;
+    postBody:(NSData *)bodyData name:(NSString *)name fileName:(NSString *)fileName
+	mime:(NSString *)mime success:(void (^)(id, id))success failure:(void (^)(NSError *error, id response))failure;
 
 @end
