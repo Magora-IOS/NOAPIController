@@ -35,6 +35,7 @@
             @"key": @"keypath",
             @"type": @"NSString",
             @"transformer": @"transformer method name (api_type -> property_type)"
+			@"validators": @"array of validator methods names (api_type -> NSNumber(BOOL))"
         },
         @"api_key": @{
             @"key": @"keypath",
@@ -54,6 +55,6 @@
 
 
 @interface NOAPIMapper : NSObject
-- (instancetype)initWithFieldsMap:(NSDictionary *)fieldsMap transformer:(id)transformer;
+- (instancetype)initWithFieldsMap:(NSDictionary *)fieldsMap transformer:(id)transformer validator:(id)validator;
 - (id)objectOfType:(Class)objectType fromDictionary:(NSDictionary *)rawObject;
 @end

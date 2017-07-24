@@ -40,7 +40,7 @@
     if (self) {
         _mapper = [[GitHubAPIMapper alloc] init];
         _apiController = [[AbstractAPIController alloc] initWithBaseURL:kBaseGitHubAPIURL
-            fieldsMap:_mapper.map transformer:_mapper];
+            fieldsMap:_mapper.map transformer:_mapper validator:_mapper];
     }
     return self;
 }
