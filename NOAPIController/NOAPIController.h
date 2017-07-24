@@ -75,7 +75,7 @@ typedef NS_ENUM(NSInteger, HTTPRequestMethod) {
 @property (nonatomic, readonly) dispatch_queue_t parsingQueue;
 
 - (instancetype)initWithBaseURL:(NSString *)baseAPIURL fieldsMap:(NSDictionary *)fieldsMap
-    transformer:(id)transformer;
+    transformer:(id)transformer validator:(id)validator;
 
 - (id<NOAPITask>)getObjectOfType:(Class)objectType fromURL:(NSString *)objectURL
     success:(void(^)(id rawObject, id resultingObject))success

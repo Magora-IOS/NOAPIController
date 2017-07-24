@@ -30,6 +30,7 @@
 
 @interface NOAPIMapper ()
 @property (nonatomic) id transformer;
+@property (nonatomic) id validator;
 @property (nonatomic) NSDictionary *fieldsMap;
 @end
 
@@ -38,12 +39,13 @@
 
 #pragma mark - Object lifecycle
 
-- (instancetype)initWithFieldsMap:(NSDictionary *)fieldsMap transformer:(id)transformer
+- (instancetype)initWithFieldsMap:(NSDictionary *)fieldsMap transformer:(id)transformer validator:(id)validator
 {
     self = [self init];
     if (self) {
         _fieldsMap = fieldsMap;
         _transformer = transformer;
+		_validator = validator;
     }
     return self;
 }
@@ -53,6 +55,7 @@
 - (id)objectOfType:(Class)objectType fromDictionary:(NSDictionary *)rawObject
 {
     id objectTransformer = self.fieldsMap[NSStringFromClass(objectType)];
+	
     id (*transform)(id, SEL, id) = (id (*)(id, SEL, id))objc_msgSend;
 
     // Use external parser method
@@ -91,9 +94,34 @@
             NSString *arrayItemClassName = fields[fieldKey][@"arrayOf"];
             NSString *dictionaryItemClassName = fields[fieldKey][@"dictionaryOf"];
             NSString *typeTransformer = fieldDescription[@"transformer"];
+			NSArray *valueValidators = fieldDescription[@"validators"];
             NSString *classOfObject = fieldDescription[@"kindOf"];
             NSString *typeOfField = fieldDescription[@"type"];
 			NSString *aggregatedKey = fieldDescription[@"aggregatedKey"];
+
+			// Validate input value.
+			if (valueValidators) {
+				id (*validate)(id, SEL, id) = (id (*)(id, SEL, id))objc_msgSend;
+				
+				BOOL validationPassed = YES;
+				
+				for (NSString *valueValidator in valueValidators) {
+					SEL validatorSelector = NSSelectorFromString(valueValidator);
+					id rawValue = [rawObject valueForKeyPath:fieldKey];
+					NSNumber *valid = validate(self.validator, validatorSelector, rawValue);
+					if (!valid.boolValue) {
+						NSLog(@"Warning: API response for <%@> contains value: <%@>%@ "
+							"for key \"%@\", which did not pass validation.", objectType,
+							[rawValue class], rawValue, fieldKey);
+						validationPassed = NO;
+						break;
+					}
+				}
+				
+				if (!validationPassed) {
+					continue;
+				}
+			}
 
             // Parse array of sub-objects.
             if (arrayItemClassName) {

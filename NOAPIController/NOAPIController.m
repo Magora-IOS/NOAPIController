@@ -42,11 +42,11 @@
 #pragma mark - Public methods
 
 - (instancetype)initWithBaseURL:(NSString *)baseAPIURL
-    fieldsMap:(NSDictionary *)fieldsMap transformer:(id)transformer
+    fieldsMap:(NSDictionary *)fieldsMap transformer:(id)transformer validator:(id)validator
 {
     self = [self init];
     if (self) {
-        _mapper = [[NOAPIMapper alloc] initWithFieldsMap:fieldsMap transformer:transformer];
+        _mapper = [[NOAPIMapper alloc] initWithFieldsMap:fieldsMap transformer:transformer validator:validator];
         _sendingQueue = dispatch_queue_create(NULL, DISPATCH_QUEUE_SERIAL);
         _parsingQueue = dispatch_queue_create(NULL, DISPATCH_QUEUE_SERIAL);
         _requestManager = [[AFHTTPRequestOperationManager alloc]
