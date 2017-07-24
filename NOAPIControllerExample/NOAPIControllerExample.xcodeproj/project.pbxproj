@@ -19,9 +19,20 @@
 		6EE867A21AD6219B008AF641 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6EE867A11AD6219B008AF641 /* Images.xcassets */; };
 		6EE867A51AD6219B008AF641 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6EE867A31AD6219B008AF641 /* LaunchScreen.xib */; };
 		6EE867BD1AD62838008AF641 /* NOAPIController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EE867BC1AD62838008AF641 /* NOAPIController.m */; };
+		73492DA61F25C98400C32867 /* NOAPIControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 73492DA51F25C98400C32867 /* NOAPIControllerTests.m */; };
 		BD9A1FCD1B304EC900385ED9 /* NOAPITask.m in Sources */ = {isa = PBXBuildFile; fileRef = BD9A1FCC1B304EC900385ED9 /* NOAPITask.m */; };
 		E2604AB40AA0C8DC07435DCB /* libPods-NOAPIControllerExample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B1DF83A455AF5B54D89A534 /* libPods-NOAPIControllerExample.a */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		73492DA81F25C98400C32867 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6EE867891AD6219B008AF641 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6EE867901AD6219B008AF641;
+			remoteInfo = NOAPIControllerExample;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		10259FABFACEE18A797142C0 /* Pods-NOAPIControllerExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NOAPIControllerExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-NOAPIControllerExample/Pods-NOAPIControllerExample.release.xcconfig"; sourceTree = "<group>"; };
@@ -49,6 +60,9 @@
 		6EE867A41AD6219B008AF641 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		6EE867BB1AD62838008AF641 /* NOAPIController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NOAPIController.h; sourceTree = "<group>"; };
 		6EE867BC1AD62838008AF641 /* NOAPIController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NOAPIController.m; sourceTree = "<group>"; };
+		73492DA31F25C98400C32867 /* NOAPIControllerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NOAPIControllerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		73492DA51F25C98400C32867 /* NOAPIControllerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NOAPIControllerTests.m; sourceTree = "<group>"; };
+		73492DA71F25C98400C32867 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BD9A1FCB1B304EC900385ED9 /* NOAPITask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NOAPITask.h; sourceTree = "<group>"; };
 		BD9A1FCC1B304EC900385ED9 /* NOAPITask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NOAPITask.m; sourceTree = "<group>"; };
 		BD9A1FCE1B304F0D00385ED9 /* NOAPITaskProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NOAPITaskProtocol.h; sourceTree = "<group>"; };
@@ -60,6 +74,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				E2604AB40AA0C8DC07435DCB /* libPods-NOAPIControllerExample.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		73492DA01F25C98400C32867 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,6 +130,7 @@
 			children = (
 				6EE867BA1AD62838008AF641 /* NOAPIController */,
 				6EE867931AD6219B008AF641 /* NOAPIControllerExample */,
+				73492DA41F25C98400C32867 /* NOAPIControllerTests */,
 				6EE867921AD6219B008AF641 /* Products */,
 				E127ABA70F31816942322F8C /* Pods */,
 				B964967D40AF267F9988C7C9 /* Frameworks */,
@@ -119,6 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				6EE867911AD6219B008AF641 /* NOAPIControllerExample.app */,
+				73492DA31F25C98400C32867 /* NOAPIControllerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -164,6 +187,15 @@
 			path = ../NOAPIController;
 			sourceTree = "<group>";
 		};
+		73492DA41F25C98400C32867 /* NOAPIControllerTests */ = {
+			isa = PBXGroup;
+			children = (
+				73492DA51F25C98400C32867 /* NOAPIControllerTests.m */,
+				73492DA71F25C98400C32867 /* Info.plist */,
+			);
+			path = NOAPIControllerTests;
+			sourceTree = "<group>";
+		};
 		B964967D40AF267F9988C7C9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -203,6 +235,24 @@
 			productReference = 6EE867911AD6219B008AF641 /* NOAPIControllerExample.app */;
 			productType = "com.apple.product-type.application";
 		};
+		73492DA21F25C98400C32867 /* NOAPIControllerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 73492DAC1F25C98400C32867 /* Build configuration list for PBXNativeTarget "NOAPIControllerTests" */;
+			buildPhases = (
+				73492D9F1F25C98400C32867 /* Sources */,
+				73492DA01F25C98400C32867 /* Frameworks */,
+				73492DA11F25C98400C32867 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				73492DA91F25C98400C32867 /* PBXTargetDependency */,
+			);
+			name = NOAPIControllerTests;
+			productName = NOAPIControllerTests;
+			productReference = 73492DA31F25C98400C32867 /* NOAPIControllerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -214,6 +264,11 @@
 				TargetAttributes = {
 					6EE867901AD6219B008AF641 = {
 						CreatedOnToolsVersion = 6.2;
+					};
+					73492DA21F25C98400C32867 = {
+						CreatedOnToolsVersion = 8.3.3;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 6EE867901AD6219B008AF641;
 					};
 				};
 			};
@@ -230,6 +285,7 @@
 			projectRoot = "";
 			targets = (
 				6EE867901AD6219B008AF641 /* NOAPIControllerExample */,
+				73492DA21F25C98400C32867 /* NOAPIControllerTests */,
 			);
 		};
 /* End PBXProject section */
@@ -242,6 +298,13 @@
 				6EE867A01AD6219B008AF641 /* Main.storyboard in Resources */,
 				6EE867A51AD6219B008AF641 /* LaunchScreen.xib in Resources */,
 				6EE867A21AD6219B008AF641 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		73492DA11F25C98400C32867 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,7 +361,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		73492D9F1F25C98400C32867 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				73492DA61F25C98400C32867 /* NOAPIControllerTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		73492DA91F25C98400C32867 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6EE867901AD6219B008AF641 /* NOAPIControllerExample */;
+			targetProxy = 73492DA81F25C98400C32867 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		6EE8679E1AD6219B008AF641 /* Main.storyboard */ = {
@@ -432,6 +511,47 @@
 			};
 			name = Release;
 		};
+		73492DAA1F25C98400C32867 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_TESTABILITY = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = NOAPIControllerTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.magora-systems.NOAPIControllerTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NOAPIControllerExample.app/NOAPIControllerExample";
+			};
+			name = Debug;
+		};
+		73492DAB1F25C98400C32867 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = NOAPIControllerTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.magora-systems.NOAPIControllerTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NOAPIControllerExample.app/NOAPIControllerExample";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -452,6 +572,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		73492DAC1F25C98400C32867 /* Build configuration list for PBXNativeTarget "NOAPIControllerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				73492DAA1F25C98400C32867 /* Debug */,
+				73492DAB1F25C98400C32867 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
