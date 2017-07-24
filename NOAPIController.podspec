@@ -1,12 +1,12 @@
 Pod::Spec.new do |s|
   s.name         = "NOAPIController"
-  s.version      = "0.0.12"
+  s.version      = "0.0.13"
   s.summary      = "API controller with JSON to Objective-C objects mapping."
-  s.homepage     = "https://github.com/fedulvtubudul/NOAPIController"
+  s.homepage     = "https://github.com/Magora-IOS/NOAPIController"
   s.license      = "MIT"
   s.author       = "Alexander Gorbunov"
   s.platform     = :ios
-  s.source       = { :git => "https://github.com/fedulvtubudul/NOAPIController.git", :tag => s.version }
+  s.source       = { :git => "https://github.com/Magora-IOS/NOAPIController.git", :tag => s.version }
   s.requires_arc = true
   s.ios.deployment_target = "7.0"
   s.source_files  = "NOAPIController/*.{h,m}"
